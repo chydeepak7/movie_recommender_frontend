@@ -22,14 +22,28 @@ export default function Home() {
     fetchMovies();
   }, []);
 
+  const filteredMovies = movies.filter((movie) => 
+    movie.title.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
-    <div className={styles.page}>
+    <div className='flex flex-col items-center gap-5 p-5'>
       <h1>Movies list</h1>
-      <ul>
-        {movies.map((movie, idx) => (
-          <li key={idx}>{movie.title}</li>
-        ))}
+      <input type="text" placeholder="Movie name" value={query} onChange={(e) => setQuery(e.target.value)} className="p-10 border border-gray-300 rounded-md text-center focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <ul className="space-y-2 max-h-53 overflow-auto">
+       {filteredMovies.length > 0? (
+        filteredMovies.map((movie) => (
+          <li className="bg-white p-3 rounded shadow text-center">
+            {movie.title}
+          </li>
+        ))
+       ) : (
+        <p>No movies found</p>
+       )}
       </ul>
+      <div>
+        
+      </div>
     </div>
   );
 }
