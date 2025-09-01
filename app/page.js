@@ -33,7 +33,7 @@ export default function Home() {
       <ul className="space-y-2 max-h-53 overflow-auto">
        {filteredMovies.length > 0? (
         filteredMovies.map((movie) => (
-          <li className="bg-white p-3 rounded shadow text-center">
+          <li key={movie} className="bg-white p-3 rounded shadow text-center">
             {movie.title}
           </li>
         ))
@@ -42,7 +42,7 @@ export default function Home() {
        )}
       </ul>
       <div>
-        
+
       </div>
     </div>
   );
